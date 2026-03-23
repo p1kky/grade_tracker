@@ -8,7 +8,7 @@ A terminal-based electronic school journal (Grade Tracker) designed for students
 - Quarter Selection – Choose the school quarter to work with.
 - Subject Management – View a list of subjects and select one to manage with.
 
-### Quarter-Wide Operations:
+### Quarter-Wide Operations: 
 - Calculate average grades for the quarter (with validation that every subject has grades)
 - Reset all grades for the quarter (requires confirmation)
 
@@ -19,9 +19,9 @@ A terminal-based electronic school journal (Grade Tracker) designed for students
 - Reset grades for the subject (requires confirmation)
 - Calculate quarter average (checks that at least 2 grades exist)
 
-### Data Persistence – 
+### Data Persistence: 
 All grades are stored in a marks.json file for easy saving and loading, managed by one file: data_manager.
-### Structured Code – 
+### Structured Code: 
 The project is organized into folders: configuration, interface, calculations, data management, etc., making it maintainable and extendable.
 
 ---
@@ -33,8 +33,8 @@ You can set up the project either via Git or by downloading the ZIP file.
 ### Option 1: Clone with Git
 
 ```bash
-git clone https://github.com/yourusername/cli-grade-tracker.git
-cd cli-grade-tracker
+git clone https://github.com/p1kky/grade-tracker.git
+cd grade-tracker
 ```
 
 ### Option 2: Download ZIP
@@ -44,7 +44,7 @@ cd cli-grade-tracker
 3. Extract the ZIP file to your preferred location.
 4. Open a terminal and navigate into the extracted folder:
 ```bash
-cd path/to/cli-grade-tracker
+cd path/to/grade-tracker
 ```
 
 ---

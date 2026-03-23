@@ -1,23 +1,9 @@
+import calculations
 import data_manager
+import config
 
-subjects = (
-    "Бел. яз",
-    "Бел. лит",
-    "Русск. яз",
-    "Русск. лит",
-    "Англ. яз",
-    "История Беларуси",
-    "Всемирная история",
-    "Обществознание",
-    "География",
-    "Биология",
-    "Математика",
-    "Физика",
-    "Химия",
-    "Информатика",
-    "Физ-ра",
-    "Труды",
-)
+
+# --- quarter choice
 
 
 def get_quarter():
@@ -30,6 +16,9 @@ def get_quarter():
             continue
 
         return quarter
+
+
+# --- after quarter choice
 
 
 def afterquarter_choice():
@@ -50,8 +39,12 @@ def afterquarter_choice():
         return int(choice)
 
 
+# -- choice functions
+
+
+# help func
 def print_subjects():
-    for i, subject in enumerate(subjects, start=1):
+    for i, subject in enumerate(config.SUBJECTS, start=1):
         print(f" {i}. {subject}")
 
 
@@ -64,26 +57,20 @@ def get_subject():
         ).strip()
 
         if not user_subject.isdigit():
-            print(f"Напишите цифру от 1 до {len(subjects)}\n")
+            print(f"Напишите цифру от 1 до {len(config.SUBJECTS)}\n")
 
             continue
 
-        if not (1 <= int(user_subject) <= len(subjects)):
-            print(f"Напишите цифру от 1 до {len(subjects)}\n")
+        if not (1 <= int(user_subject) <= len(config.SUBJECTS)):
+            print(f"Напишите цифру от 1 до {len(config.SUBJECTS)}\n")
 
             continue
 
-        return subjects[int(user_subject) - 1]
+        return config.SUBJECTS[int(user_subject) - 1]
 
 
 def get_gpa(data, quarter):
-    quarter_marks_list = data_manager.return_quarter_marks(data, quarter)
-    final_quarter_marks_list = []
-
-    for i in quarter_marks_list:
-        final_quarter_marks_list.append(calculate_quarter_mark(i))
-
-    result = round((sum(final_quarter_marks_list) / len(final_quarter_marks_list)), 2)
+    result = calculations.calculate_gpa(data, quarter, data_manager)
 
     print(f"Ваш средний балл за четверть: {result}")
 
@@ -110,6 +97,9 @@ def delete_quarter_marks(data, quarter):
         break
 
 
+# --- choice after subject
+
+
 def aftersubject_choice():
     while True:
         choice = input(
@@ -128,6 +118,9 @@ def aftersubject_choice():
             continue
 
         return int(choice)
+
+
+# -- choice functions
 
 
 def show_marks(data, quarter, subject):
@@ -205,23 +198,8 @@ def reset_subject_marks(data, quarter, subject):
             break
 
 
-def calculate_quarter_mark(subject_marks):
-    while True:
-        if len(subject_marks) < 2:
-            print(
-                "Посчитать средний балл не удается, менее чем 2 отметки по какому то из предметов"
-            )
-
-            exit()
-
-        result = round((sum(subject_marks) / len(subject_marks)), 0)
-
-        return result
-
-
 def print_quarter_mark(data, quarter, subject):
     subject_marks = data_manager.return_subject_marks(data, quarter, subject)
-
-    result = calculate_quarter_mark(subject_marks)
+    result = calculations.calculate_quarter_mark(subject_marks)
 
     print(f"Ваша четвертная отметка по '{subject}' = {result}")

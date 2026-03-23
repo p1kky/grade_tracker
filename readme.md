@@ -19,8 +19,10 @@ A terminal-based electronic school journal (Grade Tracker) designed for students
 - Reset grades for the subject (requires confirmation)
 - Calculate quarter average (checks that at least 2 grades exist)
 
-### Data Persistence – All grades are stored in a marks.json file for easy saving and loading, managed by one file: data_manager.
-### Structured Code – The project is organized into folders: configuration, interface, calculations, data management, etc., making it maintainable and extendable.
+### Data Persistence – 
+All grades are stored in a marks.json file for easy saving and loading, managed by one file: data_manager.
+### Structured Code – 
+The project is organized into folders: configuration, interface, calculations, data management, etc., making it maintainable and extendable.
 
 ---
 
@@ -29,23 +31,26 @@ A terminal-based electronic school journal (Grade Tracker) designed for students
 You can set up the project either via Git or by downloading the ZIP file.
 
 ### Option 1: Clone with Git
+
 ```bash
 git clone https://github.com/yourusername/cli-grade-tracker.git
 cd cli-grade-tracker
 ```
 
 ### Option 2: Download ZIP
+
+1. Go to the repository page on GitHub.
+2. Click the Code → Download ZIP button.
+3. Extract the ZIP file to your preferred location.
+4. Open a terminal and navigate into the extracted folder:
 ```bash
-Go to the repository page on GitHub.
-Click the Code → Download ZIP button.
-Extract the ZIP file to your preferred location.
-Open a terminal and navigate into the extracted folder:
 cd path/to/cli-grade-tracker
 ```
 
 ---
 
 ## 🚀 Usage 
+
 1. Run the main script:
 ```bash
 python3 main.py
@@ -64,7 +69,7 @@ python3 main.py
 ## 📂 Project Structure 
 
 ```bash
-cli-grade-tracker/
+grade-tracker/
 ├─ main.py              # Entry point
 ├─ config/
 │  └─ config.py         # Project configuration
@@ -80,6 +85,7 @@ cli-grade-tracker/
 ---
 
 ## ✅ Requirements 
+
 - Python 3.8+
 - Standard Python libraries (json, os, etc.)
 

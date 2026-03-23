@@ -1,3 +1,5 @@
+import data_manager
+
 subjects = (
     "Бел. яз",
     "Бел. лит",
@@ -66,12 +68,36 @@ def get_subject():
         return subjects[int(user_subject) - 1]
 
 
-def get_gpa():
-    pass
+def get_gpa(data, quarter):
+    quarter_marks_list = data_manager.return_quarter_marks(data, quarter)
+    final_quarter_marks_list = []
+
+    for i in quarter_marks_list:
+        final_quarter_marks_list.append(calculate_quarter_mark(i))
+
+    result = round((sum(final_quarter_marks_list) / len(final_quarter_marks_list)), 2)
+
+    print(f"Ваш средний балл за четверть: {result}")
 
 
-def reset_quarter_marks():
-    pass
+def delete_quarter_marks(data, quarter):
+    while True:
+        confirmation = (
+            input(
+                "Вы уверены, что хотите сбросить отметки по всем предметам за четверть?(да/нет)\n - "
+            )
+            .lower()
+            .strip()
+        )
+
+        if confirmation not in ("да", "нет"):
+            continue
+
+        if confirmation == "да":
+            data_manager.reset_quarter_marks(data, quarter)
+            print(f"Ваши отметки за {quarter} четверть были успешно сброшены")
+
+        break
 
 
 def aftersubject_choice():
@@ -92,25 +118,89 @@ def aftersubject_choice():
         return int(choice)
 
 
-def get_subject_marks():
-    pass
+def show_marks(data, quarter, subject):
+    subject_marks = data_manager.return_subject_marks(data, quarter, subject)
+
+    print(f"Ваши отметки по предмету '{subject}': {', '.join(map(str, subject_marks))}")
 
 
-def show_marks():
-    pass
+def add_mark(data, quarter, subject):
+    while True:
+        user_new_mark = input(
+            f"Введи новую отметку по '{subject}' (1-10):\n - "
+        ).strip()
+
+        if not user_new_mark.isdigit():
+            continue
+
+        user_new_mark = int(user_new_mark)
+
+        if user_new_mark > 10 or user_new_mark < 1:
+            continue
+
+        data_manager.add_mark(data, quarter, subject, user_new_mark)
+        print(f"По '{subject}' была добавлена отметка: {user_new_mark}")
+
+        break
 
 
-def add_mark():
-    pass
+def remove_mark(data, quarter, subject):
+    subject_marks = data_manager.return_subject_marks(data, quarter, subject)
+
+    while True:
+        user_mark = input(f"Введи какую отметку убрать по '{subject}':\n - ").strip()
+
+        if not user_mark.isdigit():
+            continue
+
+        user_mark = int(user_mark)
+
+        if user_mark not in subject_marks:
+            print("Такой отметки там нет")
+
+            continue
+
+        data_manager.remove_mark(data, quarter, subject, user_mark)
+        print(f"По '{subject}' была удалена отметка: {user_mark}")
+
+        break
 
 
-def remove_mark():
-    pass
+def reset_subject_marks(data, quarter, subject):
+    while True:
+        confirmation = (
+            input("Вы уверены, что хотите сбросить отметки по предмету?(да/нет)\n - ")
+            .lower()
+            .strip()
+        )
+
+        if confirmation not in ("да", "нет"):
+            continue
+
+        if confirmation == "да":
+            data_manager.reset_subject_marks(data, quarter, subject)
+            print(f"Ваши отметки по '{subject}' были успешно сброшены")
+
+            break
 
 
-def reset_subject_marks():
-    pass
+def calculate_quarter_mark(subject_marks):
+    while True:
+        if len(subject_marks) < 2:
+            print(
+                "Посчитать четвертную не удается, где-то менее чем 2 отметки по предмету"
+            )
+
+            exit()
+
+        result = round((sum(subject_marks) / len(subject_marks)), 0)
+
+        return result
 
 
-def get_quarter_mark():
-    pass
+def print_quarter_mark(data, quarter, subject):
+    subject_marks = data_manager.return_subject_marks(data, quarter, subject)
+
+    result = calculate_quarter_mark(subject_marks)
+
+    print(f"Ваша четвертная отметка по '{subject}' = {result}")

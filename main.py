@@ -1,6 +1,8 @@
 import cli_interface
+import data_manager
 
-json_data_file = "marks.json"
+data_manager.generate_empty_json(cli_interface.subjects)
+data = data_manager.load_json()
 
 intro_text = "\n" * 3 + "-*- " * 3 + "Grade Tracker" + " -*-" * 3
 
@@ -27,27 +29,27 @@ def main():
 
             match choice_after_subject:
                 case 1:
-                    cli_interface.show_marks()
+                    cli_interface.show_marks(data, school_quarter, user_subject)
 
                 case 2:
-                    cli_interface.add_mark()
+                    cli_interface.add_mark(data, school_quarter, user_subject)
 
                 case 3:
-                    cli_interface.remove_mark()
+                    cli_interface.remove_mark(data, school_quarter, user_subject)
 
                 case 4:
-                    cli_interface.reset_subject_marks()
+                    cli_interface.reset_subject_marks(
+                        data, school_quarter, user_subject
+                    )
 
                 case 5:
-                    cli_interface.get_quarter_mark()
+                    cli_interface.print_quarter_mark(data, school_quarter, user_subject)
 
         case 2:
-            cli_interface.get_gpa()
+            cli_interface.get_gpa(data, school_quarter)
 
         case 3:
-            cli_interface.reset_quarter_marks()
-
-    print(intro_text)
+            cli_interface.delete_quarter_marks(data, school_quarter)
 
 
 if __name__ == "__main__":

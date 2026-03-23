@@ -1,5 +1,6 @@
 import json
-import config
+
+from config import config
 
 
 # --- json basic func-s

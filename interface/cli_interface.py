@@ -1,6 +1,6 @@
-import calculations
-import config
-import data_manager
+from core import calculations
+from config import config
+from data import data_manager
 
 # --- quarter choice
 

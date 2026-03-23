@@ -1,4 +1,4 @@
-BASE_FILENAME = "marks.json"
+BASE_FILENAME = "data/marks.json"
 
 SUBJECTS = (
     "Бел. яз",

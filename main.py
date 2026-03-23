@@ -1,5 +1,5 @@
-import cli_interface
-import data_manager
+from interface import cli_interface
+from data import data_manager
 
 intro_text = "\n" * 3 + "-*- " * 3 + "Grade Tracker" + " -*-" * 3
 

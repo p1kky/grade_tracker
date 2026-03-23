@@ -7,7 +7,7 @@ def calculate_quarter_mark(subject_marks):
 
             return None
 
-        result = round((sum(subject_marks) / len(subject_marks)), 0)
+        result = round((sum(subject_marks) / len(subject_marks)))
 
         return result
 

@@ -25,6 +25,8 @@ def get_quarter():
         quarter = input("Выберите четверть:\n - ").strip()
 
         if quarter not in map(str, range(1, 5)):
+            print("Напишите цифру в диапазоне от 1 до 4\n")
+
             continue
 
         return quarter
@@ -41,6 +43,8 @@ def afterquarter_choice():
         ).strip()
 
         if choice not in map(str, range(1, 4)):
+            print("Напишите цифру от 1 до 3\n")
+
             continue
 
         return int(choice)
@@ -60,9 +64,13 @@ def get_subject():
         ).strip()
 
         if not user_subject.isdigit():
+            print(f"Напишите цифру от 1 до {len(subjects)}\n")
+
             continue
 
         if not (1 <= int(user_subject) <= len(subjects)):
+            print(f"Напишите цифру от 1 до {len(subjects)}\n")
+
             continue
 
         return subjects[int(user_subject) - 1]
@@ -84,13 +92,15 @@ def delete_quarter_marks(data, quarter):
     while True:
         confirmation = (
             input(
-                "Вы уверены, что хотите сбросить отметки по всем предметам за четверть?(да/нет)\n - "
+                "Вы уверены, что хотите сбросить отметки по всем предметам за четверть? (да/нет):\n - "
             )
             .lower()
             .strip()
         )
 
         if confirmation not in ("да", "нет"):
+            print("Напишите 'да' или 'нет'\n")
+
             continue
 
         if confirmation == "да":
@@ -113,6 +123,8 @@ def aftersubject_choice():
         ).strip()
 
         if choice not in map(str, range(1, 6)):
+            print("Напишите цифру от 1 до 5\n")
+
             continue
 
         return int(choice)
@@ -131,14 +143,19 @@ def add_mark(data, quarter, subject):
         ).strip()
 
         if not user_new_mark.isdigit():
+            print("Напишите цифру\n")
+
             continue
 
         user_new_mark = int(user_new_mark)
 
         if user_new_mark > 10 or user_new_mark < 1:
+            print("Напишите цифру в диапазоне от 1 до 10\n")
+
             continue
 
         data_manager.add_mark(data, quarter, subject, user_new_mark)
+
         print(f"По '{subject}' была добавлена отметка: {user_new_mark}")
 
         break
@@ -151,12 +168,14 @@ def remove_mark(data, quarter, subject):
         user_mark = input(f"Введи какую отметку убрать по '{subject}':\n - ").strip()
 
         if not user_mark.isdigit():
+            print("Напишите цифру\n")
+
             continue
 
         user_mark = int(user_mark)
 
         if user_mark not in subject_marks:
-            print("Такой отметки там нет")
+            print("Напишите отметку из имеющихся\n")
 
             continue
 
@@ -169,12 +188,14 @@ def remove_mark(data, quarter, subject):
 def reset_subject_marks(data, quarter, subject):
     while True:
         confirmation = (
-            input("Вы уверены, что хотите сбросить отметки по предмету?(да/нет)\n - ")
+            input("Вы уверены, что хотите сбросить отметки по предмету? (да/нет):\n - ")
             .lower()
             .strip()
         )
 
         if confirmation not in ("да", "нет"):
+            print("Напишите 'да' или 'нет'\n")
+
             continue
 
         if confirmation == "да":
@@ -188,7 +209,7 @@ def calculate_quarter_mark(subject_marks):
     while True:
         if len(subject_marks) < 2:
             print(
-                "Посчитать четвертную не удается, где-то менее чем 2 отметки по предмету"
+                "Посчитать средний балл не удается, менее чем 2 отметки по какому то из предметов"
             )
 
             exit()

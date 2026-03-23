@@ -1,17 +1,16 @@
 import calculations
-import data_manager
 import config
-
+import data_manager
 
 # --- quarter choice
 
 
 def get_quarter():
     while True:
-        quarter = input("Выберите четверть:\n - ").strip()
+        quarter = input("Выберите четверть (0 - Выйти):\n - ").strip()
 
-        if quarter not in map(str, range(1, 5)):
-            print("Напишите цифру в диапазоне от 1 до 4\n")
+        if quarter not in map(str, range(0, 5)):
+            print("Напишите цифру в диапазоне от 0 до 4\n")
 
             continue
 
@@ -25,14 +24,15 @@ def afterquarter_choice():
     while True:
         choice = input(
             "Выберите действие из перечисленных (цифра): \n"
+            " 0. Назад\n"
             " 1. Выбрать предмет\n"
             " 2. Посчитать средний балл за четверть\n"
             " 3. Сбросить отметки за четверть\n"
             " - "
         ).strip()
 
-        if choice not in map(str, range(1, 4)):
-            print("Напишите цифру от 1 до 3\n")
+        if choice not in map(str, range(0, 4)):
+            print("Напишите цифру от 0 до 3\n")
 
             continue
 
@@ -104,6 +104,7 @@ def aftersubject_choice():
     while True:
         choice = input(
             "Выберите действие из перечисленных (цифра): \n"
+            " 0. Назад\n"
             " 1. Просмотреть отметки\n"
             " 2. Добавить отметку\n"
             " 3. Удалить отметку\n"
@@ -112,8 +113,8 @@ def aftersubject_choice():
             " - "
         ).strip()
 
-        if choice not in map(str, range(1, 6)):
-            print("Напишите цифру от 1 до 5\n")
+        if choice not in map(str, range(0, 6)):
+            print("Напишите цифру от 0 до 5\n")
 
             continue
 

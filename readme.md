@@ -24,7 +24,7 @@ A terminal-based electronic school journal (Grade Tracker) designed for students
 
 ---
 
-## Installation 🛠
+## 🛠 Installation 
 
 You can set up the project either via Git or by downloading the ZIP file.
 
@@ -45,7 +45,7 @@ cd path/to/cli-grade-tracker
 
 ---
 
-## Usage 🚀
+## 🚀 Usage 
 1. Run the main script:
 ```bash
 python3 main.py
@@ -61,7 +61,9 @@ python3 main.py
 
 ---
 
-## Project Structure 📂
+## 📂 Project Structure 
+
+```bash
 cli-grade-tracker/
 ├─ main.py              # Entry point
 ├─ config/
@@ -73,21 +75,22 @@ cli-grade-tracker/
 ├─ data/
 │  ├─ data_manager.py   # JSON file operations
 │  └─ marks.json        # Stored grades
+```
 
 ---
 
-## Requirements ✅
+## ✅ Requirements 
 - Python 3.8+
 - Standard Python libraries (json, os, etc.)
 
 ---
 
-## Contributing 🤝
+## 🤝 Contributing
 
 Any suggestions or improvements are welcome!
 
 ---
 
-## License 📝
+## License
 
 This project is licensed under the MIT License.

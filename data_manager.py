@@ -6,10 +6,14 @@ import config
 
 
 def load_json():
-    with open(config.BASE_FILENAME, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        with open(config.BASE_FILENAME, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-    return data
+        return data
+
+    except FileNotFoundError:
+        generate_empty_json(config.SUBJECTS)
 
 
 def save_json(data):

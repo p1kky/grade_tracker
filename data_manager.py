@@ -1,12 +1,20 @@
 import json
-from config import BASE_FILENAME
+import config
+
+
+# --- json basic func-s
 
 
 def load_json():
-    with open(BASE_FILENAME, "r", encoding="utf-8") as f:
+    with open(config.BASE_FILENAME, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     return data
+
+
+def save_json(data):
+    with open(config.BASE_FILENAME, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
 
 
 def generate_empty_json(subjects):
@@ -15,11 +23,14 @@ def generate_empty_json(subjects):
     }
 
     try:
-        with open(BASE_FILENAME, "x") as f:
+        with open(config.BASE_FILENAME, "x") as f:
             json.dump(empty_json_structure, f, indent=4, ensure_ascii=False)
 
     except FileExistsError:
         pass
+
+
+# --- quarter
 
 
 def return_quarter_marks(data, quarter):
@@ -38,6 +49,9 @@ def reset_quarter_marks(data, quarter):
         data["quarters"][quarter][i].clear()
 
         save_json(data)
+
+
+# --- subject
 
 
 def return_subject_marks(data, quarter, subject):
@@ -60,8 +74,3 @@ def reset_subject_marks(data, quarter, subject):
     data["quarters"][quarter][subject].clear()
 
     save_json(data)
-
-
-def save_json(data):
-    with open(BASE_FILENAME, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)

@@ -42,7 +42,7 @@ def after_quarter_menu(data, school_quarter):
 def subject_menu(data, school_quarter):
     print(intro_text)
 
-    user_subject = cli_interface.get_subject()
+    user_subject = cli_interface.get_subject(data, school_quarter)
 
     while True:
         print(intro_text)

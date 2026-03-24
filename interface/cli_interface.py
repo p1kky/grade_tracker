@@ -43,13 +43,15 @@ def afterquarter_choice():
 
 
 # help func
-def print_subjects():
+def print_subjects(data, quarter):
     for i, subject in enumerate(config.SUBJECTS, start=1):
-        print(f" {i}. {subject}")
+        print(
+            f" {i}. {subject}  (отметки: {', '.join(map(str, data_manager.return_subject_marks(data, quarter, subject)))})"
+        )
 
 
-def get_subject():
-    print_subjects()
+def get_subject(data, quarter):
+    print_subjects(data, quarter)
 
     while True:
         user_subject = input(

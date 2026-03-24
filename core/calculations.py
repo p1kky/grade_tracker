@@ -7,7 +7,9 @@ def calculate_quarter_mark(subject_marks):
 
             return None
 
-        result = round((sum(subject_marks) / len(subject_marks)))
+        average = sum(subject_marks) / len(subject_marks)
+        # 8.0 -> 8.5 (print = 8), 8.4 -> 8.9 (print = 8), 8.5 -> 9 (print = 9) - correct rounding
+        result = int(average + 0.5)
 
         return result
 

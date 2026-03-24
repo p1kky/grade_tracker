@@ -63,8 +63,8 @@ def return_subject_marks(data, quarter, subject):
     return data["quarters"][quarter][subject]
 
 
-def add_mark(data, quarter, subject, mark):
-    data["quarters"][quarter][subject].append(mark)
+def add_mark(data, quarter, subject, marks):
+    data["quarters"][quarter][subject].extend(marks)
 
     save_json(data)
 

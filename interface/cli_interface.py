@@ -106,8 +106,8 @@ def aftersubject_choice():
             "Выберите действие из перечисленных (цифра): \n"
             " 0. Назад\n"
             " 1. Просмотреть отметки\n"
-            " 2. Добавить отметку\n"
-            " 3. Удалить отметку\n"
+            " 2. Добавить отметки\n"
+            " 3. Удалить отметки\n"
             " 4. Сбросить отметки\n"
             " 5. Посчитать четвертную отметку по предмету\n"
             " - "
@@ -132,25 +132,34 @@ def show_marks(data, quarter, subject):
 
 def add_mark(data, quarter, subject):
     while True:
-        user_new_mark = input(
-            f"Введи новую отметку по '{subject}' (1-10):\n - "
-        ).strip()
+        user_new_marks = (
+            input(f"Введи новые отметки через пробел по '{subject}' (1-10):\n - ")
+            .strip()
+            .split()
+        )
 
-        if not user_new_mark.isdigit():
-            print("Напишите цифру\n")
-
-            continue
-
-        user_new_mark = int(user_new_mark)
-
-        if user_new_mark > 10 or user_new_mark < 1:
-            print("Напишите цифру в диапазоне от 1 до 10\n")
+        if not user_new_marks:
+            print("Введите хотя бы 1 число\n")
 
             continue
 
-        data_manager.add_mark(data, quarter, subject, user_new_mark)
+        try:
+            user_new_marks = [int(x) for x in user_new_marks]
+        except ValueError:
+            print("Все значения должны быть числами\n")
 
-        print(f"По '{subject}' была добавлена отметка: {user_new_mark}")
+            continue
+
+        if any(x < 1 or x > 10 for x in user_new_marks):
+            print("Напишите цифры в диапазоне от 1 до 10\n")
+
+            continue
+
+        data_manager.add_mark(data, quarter, subject, user_new_marks)
+
+        print(
+            f"По '{subject}' была добавлены отметки: {', '.join(map(str, user_new_marks))}"
+        )
 
         break
 
@@ -159,22 +168,33 @@ def remove_mark(data, quarter, subject):
     subject_marks = data_manager.return_subject_marks(data, quarter, subject)
 
     while True:
-        user_mark = input(f"Введи какую отметку убрать по '{subject}':\n - ").strip()
+        user_marks_to_remove = (
+            input(f"Введи какую отметку убрать по '{subject}':\n - ").strip().split()
+        )
 
-        if not user_mark.isdigit():
-            print("Напишите цифру\n")
-
-            continue
-
-        user_mark = int(user_mark)
-
-        if user_mark not in subject_marks:
-            print("Напишите отметку из имеющихся\n")
+        if not user_marks_to_remove:
+            print("Введите хотя бы одну отметку\n")
 
             continue
 
-        data_manager.remove_mark(data, quarter, subject, user_mark)
-        print(f"По '{subject}' была удалена отметка: {user_mark}")
+        try:
+            user_marks_to_remove = [int(x) for x in user_marks_to_remove]
+        except ValueError:
+            print("Все значения должны быть числами\n")
+
+            continue
+
+        if any(x not in subject_marks for x in user_marks_to_remove):
+            print("Какой то из указанных отметок нет в списке\n")
+
+            continue
+
+        for mark in user_marks_to_remove:
+            data_manager.remove_mark(data, quarter, subject, mark)
+
+        print(
+            f"По '{subject}' была удалены отметки: {', '.join(map(str, user_marks_to_remove))}"
+        )
 
         break
 

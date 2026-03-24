@@ -171,7 +171,7 @@ def remove_mark(data, quarter, subject):
 
     while True:
         user_marks_to_remove = (
-            input(f"Введи какую отметку убрать по '{subject}':\n - ").strip().split()
+            input(f"Введи какие отметки убрать по '{subject}':\n - ").strip().split()
         )
 
         if not user_marks_to_remove:

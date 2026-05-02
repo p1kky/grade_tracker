@@ -33,8 +33,8 @@ You can set up the project either via Git or by downloading the ZIP file.
 ### Option 1: Clone with Git
 
 ```bash
-git clone https://github.com/p1kky/grade-tracker.git
-cd grade-tracker
+git clone https://github.com/p1kky/grade_tracker.git
+cd grade_tracker
 ```
 
 ### Option 2: Download ZIP
@@ -44,7 +44,7 @@ cd grade-tracker
 3. Extract the ZIP file to your preferred location.
 4. Open a terminal and navigate into the extracted folder:
 ```bash
-cd path/to/grade-tracker
+cd path/to/grade_tracker
 ```
 
 ---
@@ -53,7 +53,7 @@ cd path/to/grade-tracker
 
 1. Run the main script:
 ```bash
-python3 main.py
+python main.py
 ```
 2. Follow the intuitive prompts to:
 - Select the quarter
